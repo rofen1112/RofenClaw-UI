@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "skills": {
+    "brave-search": {
+      "version": "1.0.1",
+      "installedAt": 1772336539570
+    },
+    "tiangong-wps-word-automation": {
+      "version": "0.1.0",
+      "installedAt": 1772441641228
+    },
+    "search-cluster": {
+      "version": "3.5.1",
+      "installedAt": 1772441645621
+    },
+    "agent-daily-planner": {
+      "version": "1.0.0",
+      "installedAt": 1772468113680
+    },
+    "cron-scheduling": {
+      "version": "1.0.0",
+      "installedAt": 1772468137096
+    },
+    "logging-observability": {
+      "version": "0.1.0",
+      "installedAt": 1772468162869
+    },
+    "local-stt": {
+      "version": "1.0.0",
+      "installedAt": 1772468163008
+    },
+    "edge-tts": {
+      "version": "2.0.0",
+      "installedAt": 1772468163414
+    },
+    "decision-frameworks": {
+      "version": "1.0.0",
+      "installedAt": 1772468225809
+    }
+  }
+}

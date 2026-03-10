@@ -1,0 +1,50 @@
+{
+  "task": "核心技能安装",
+  "started": "2026-03-03T00:15:00+08:00",
+  "completed": "2026-03-03T00:45:00+08:00",
+  "status": "completed",
+  "summary": {
+    "total": 6,
+    "installed": 6,
+    "failed": 0
+  },
+  "skills": {
+    "听 (STT)": {
+      "selected": "local-stt",
+      "description": "本地语音识别 (Nvidia Parakeet + Whisper)",
+      "status": "completed",
+      "installed": true
+    },
+    "说 (TTS)": {
+      "selected": "edge-tts",
+      "description": "微软Edge语音合成",
+      "status": "completed",
+      "installed": true
+    },
+    "规划": {
+      "selected": "agent-daily-planner",
+      "description": "AI日程规划",
+      "status": "completed",
+      "installed": true
+    },
+    "定时任务": {
+      "selected": "cron-scheduling",
+      "description": "Cron定时任务管理",
+      "status": "completed",
+      "installed": true
+    },
+    "静默决策+决策日志": {
+      "selected": "decision-frameworks",
+      "description": "决策框架与透明化（替代decision-log）",
+      "status": "completed",
+      "installed": true,
+      "note": "原decision-log因速率限制无法安装，使用decision-frameworks作为替代方案"
+    },
+    "日志观测": {
+      "selected": "logging-observability",
+      "description": "日志与可观测性",
+      "status": "completed",
+      "installed": true
+    }
+  }
+}

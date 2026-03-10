@@ -1,0 +1,107 @@
+.title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  padding: 0 8px;
+  user-select: none;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-card);
+  position: relative;
+}
+
+.electron-mode .title-bar {
+  -webkit-app-region: drag;
+}
+
+.title-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-left: 8px;
+  z-index: 10;
+}
+
+.title-bar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-icon {
+  font-size: 20px;
+}
+
+.logo-text {
+  font-size: 14px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #6366f1, #22d3ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.title-bar-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.title-bar-title {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.browser-mode-tag {
+  font-size: 10px;
+  padding: 2px 6px;
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--color-primary);
+  border-radius: 4px;
+}
+
+.title-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 10;
+}
+
+.electron-mode .title-bar-right {
+  -webkit-app-region: no-drag;
+}
+
+.title-bar-controls {
+  display: flex;
+  align-items: center;
+}
+
+.title-bar-btn {
+  width: 36px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary) !important;
+  border-radius: 4px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.title-bar-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-primary) !important;
+}
+
+.title-bar-btn.close-btn:hover {
+  background: var(--color-error);
+  color: #fff !important;
+}
+
+.disabled-btn {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

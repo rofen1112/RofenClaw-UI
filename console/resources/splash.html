@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RofenClaw</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 600px;
+      height: 400px;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #f8fafc 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      color: #0f172a;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bg-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(34, 211, 238, 0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .logo-container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .logo {
+      width: 120px;
+      height: 120px;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .logo-icon {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #6366f1 0%, #22d3ee 100%);
+      border-radius: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 60px;
+      box-shadow: 
+        0 20px 40px rgba(99, 102, 241, 0.15),
+        0 0 80px rgba(99, 102, 241, 0.1);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .logo-ring {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      border: 2px solid rgba(99, 102, 241, 0.2);
+      border-radius: 38px;
+      animation: ring-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes ring-pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.5; }
+    }
+
+    .brand-name {
+      font-size: 32px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6366f1 0%, #22d3ee 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 2px;
+    }
+
+    .brand-tagline {
+      font-size: 14px;
+      color: #64748b;
+      margin-top: 8px;
+      letter-spacing: 4px;
+    }
+
+    .loading-section {
+      position: relative;
+      z-index: 1;
+      width: 300px;
+      text-align: center;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 4px;
+      background: rgba(99, 102, 241, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #6366f1, #22d3ee);
+      border-radius: 2px;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .status-text {
+      font-size: 13px;
+      color: #64748b;
+      min-height: 20px;
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+    }
+
+    .status-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .status-icon {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+    }
+
+    .status-icon.loading {
+      border: 2px solid rgba(99, 102, 241, 0.2);
+      border-top-color: #6366f1;
+      animation: spin 1s linear infinite;
+    }
+
+    .status-icon.success {
+      background: #22c55e;
+    }
+
+    .status-icon.error {
+      background: #ef4444;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .version {
+      position: absolute;
+      bottom: 20px;
+      font-size: 12px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-pattern"></div>
+  
+  <div class="logo-container">
+    <div class="logo">
+      <div class="logo-ring"></div>
+      <div class="logo-icon">🦁</div>
+    </div>
+    <div class="brand-name">RofenClaw</div>
+    <div class="brand-tagline">AI 智能助手控制台</div>
+  </div>
+
+  <div class="loading-section">
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress"></div>
+    </div>
+    <div class="status-text">
+      <div class="status-item visible" id="status-item">
+        <div class="status-icon loading" id="status-icon"></div>
+        <span id="status-message">正在初始化...</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="version">v1.0.0</div>
+
+  <script>
+    const { ipcRenderer } = require('electron')
+    
+    const progressEl = document.getElementById('progress')
+    const statusIconEl = document.getElementById('status-icon')
+    const statusMessageEl = document.getElementById('status-message')
+    
+    let progress = 0
+    
+    function setProgress(value) {
+      progress = value
+      progressEl.style.width = value + '%'
+    }
+    
+    function setStatus(message, type = 'loading') {
+      statusMessageEl.textContent = message
+      statusIconEl.className = 'status-icon ' + type
+      if (type === 'success') {
+        statusIconEl.innerHTML = '✓'
+      } else if (type === 'error') {
+        statusIconEl.innerHTML = '✗'
+      } else {
+        statusIconEl.innerHTML = ''
+      }
+    }
+    
+    setProgress(10)
+    setStatus('正在加载配置...', 'loading')
+    
+    setTimeout(() => {
+      setProgress(30)
+      setStatus('正在连接 Gateway...', 'loading')
+    }, 500)
+    
+    ipcRenderer.on('loading-status', (event, data) => {
+      switch (data.stage) {
+        case 'gateway':
+          setProgress(50)
+          if (data.status === 'connected') {
+            setStatus('Gateway 已连接', 'success')
+          } else {
+            setStatus('Gateway 未运行，部分功能受限', 'error')
+          }
+          break
+        case 'config':
+          setProgress(70)
+          if (data.status === 'loaded') {
+            setStatus('配置加载完成', 'success')
+          } else {
+            setStatus('配置加载失败', 'error')
+          }
+          break
+      }
+    })
+    
+    setTimeout(() => {
+      setProgress(90)
+      setStatus('正在启动主界面...', 'loading')
+    }, 1500)
+  </script>
+</body>
+</html>
